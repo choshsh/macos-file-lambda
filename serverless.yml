@@ -1,0 +1,20 @@
+service: macos-file-lambda
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: go1.x
+  architecture: x86_64
+  memorySize: 256
+  region: ap-northeast-2
+
+package:
+  patterns:
+    - '!**'
+    - 'bin/app'
+
+functions:
+  app:
+    handler: bin/app
+    events:
+      - httpApi: 'POST /mac/convert'
